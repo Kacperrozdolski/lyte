@@ -8,11 +8,26 @@
             A URL shortener built meant to help you grow and protect your brand.
           </h2>
           <div class="lyte-input">
-            <input type="text" />
-            <button type="submit">Shorten</button>
+            <input
+              type="text"
+              v-model="url"
+              @keydown.enter="console"
+              placeholder="Shorten your links"
+            />
+            <button type="submit" @click="console">Shorten</button>
           </div>
           <div class="lyte-link-container">
-            <div class="link-table"></div>
+            <div class="link-table">
+              <component
+                :is="'LyteLink'"
+                v-for="link in links"
+                :key="link.id"
+                :id="link.id"
+                :link="link.url"
+                @deleteLink="deleteLink"
+                @copyLink="copyLink"
+              ></component>
+            </div>
             <hr />
             <p>1</p>
           </div>
@@ -22,17 +37,17 @@
         <p>copyright © 2021 kacper rozdolski. all rights reserved.</p>
       </footer>
     </section>
-    <div class="lyte-sidebar">
+    <!-- <div class="lyte-sidebar">
       <img src="@/assets/lyte.svg" alt="" />
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-// import LyteLink from "./LyteLink.vue";
+import LyteLink from "./LyteLink.vue";
 export default {
   name: "HelloWorld",
-  // components: { LyteLink },
+  components: { LyteLink },
   data() {
     return {
       url: "",
@@ -61,7 +76,19 @@ export default {
           id: this.id++,
           url: response.data.shortUrl,
         });
+        document.querySelector("input").value = "asdadssad";
+        this.url = "";
       });
+    },
+    copyLink(id) {
+      let link = this.links.find((link) => link.id == id);
+      let index = this.links.indexOf(link);
+      navigator.clipboard.writeText(this.links[index].url);
+    },
+    deleteLink(id) {
+      let link = this.links.find((link) => link.id == id);
+      let index = this.links.indexOf(link);
+      this.links.splice(index, 1);
     },
   },
 };
@@ -69,15 +96,7 @@ export default {
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;800&display=swap");
-* {
-  font-family: "Poppins";
-}
-body {
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  color: white;
-}
+
 .lyte-body {
   min-height: 100vh;
   width: 100%;
@@ -86,7 +105,7 @@ body {
   flex-direction: row;
   .lyte-container {
     height: 100vh;
-    width: 70vw;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -110,11 +129,11 @@ body {
         }
         .lyte-input {
           input {
-            width: 80%;
+            width: 78%;
             height: 40px;
             margin: 0;
+            padding: 0 0 0 2%;
             border: 0;
-            padding: 0;
             outline: 0;
           }
           button {
@@ -124,12 +143,16 @@ body {
             margin: 0;
             border: 0;
             outline: 0;
+            cursor: pointer;
+          }
+          button:hover {
+            background: rgb(206, 206, 206);
           }
         }
         .lyte-link-container {
-          height: 80%;
+          height: 74%;
           .link-table {
-            height: 300px;
+            height: 280px;
           }
           hr {
             border: 0;

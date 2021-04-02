@@ -2,8 +2,16 @@
   <div class="lyte-Link">
     <p>{{ link }}</p>
     <div class="lyte-link-menu">
-      <img src="@/assets/delete.svg" alt="copy shorten link." />
-      <img src="@/assets/copy.svg" alt="copy shorten link." />
+      <img
+        src="@/assets/delete.svg"
+        alt="copy shorten link."
+        @click="deleteLink($event)"
+      />
+      <img
+        src="@/assets/copy.svg"
+        alt="copy shorten link."
+        @click="copyLink($event)"
+      />
     </div>
   </div>
 </template>
@@ -11,6 +19,16 @@
 export default {
   props: ["link"],
   name: "LyteLink",
+  methods: {
+    deleteLink($event) {
+      let id = $event.path[2].id;
+      this.$emit("deleteLink", id);
+    },
+    copyLink($event) {
+      let id = $event.path[2].id;
+      this.$emit("copyLink", id);
+    },
+  },
 };
 </script>
 
