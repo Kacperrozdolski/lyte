@@ -1,5 +1,6 @@
 <template>
   <div class="lyte-body">
+    <img src="@/assets/lyte.png" class="logo" />
     <section class="lyte-container">
       <div class="lyte-app">
         <div class="lyte-description">
@@ -29,7 +30,22 @@
           ></component>
         </div>
       </div>
-      <footer></footer>
+      <footer>
+        <p>copyright © 2021 kacper rozdolski. all rights reserved.</p>
+        <div class="footer-wrapper">
+          <a href="mailto:leopoldsinx@gmail.com"
+            ><img src="@/assets/mail.svg"
+          /></a>
+          <a
+            href="https://www.linkedin.com/in/kacper-rozdolski-ba6a4715b/"
+            target="_blank"
+            ><img src="@/assets/linkedin.svg"
+          /></a>
+          <a href="https://github.com/Kacperrozdolski" target="_blank"
+            ><img src="@/assets/github.svg"
+          /></a>
+        </div>
+      </footer>
     </section>
   </div>
 </template>
@@ -104,13 +120,35 @@ export default {
   width: 100%;
   background: black;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  overflow: auto;
+  position: relative;
+  .logo {
+    position: absolute;
+    height: 75%;
+    z-index: 2;
+    animation: floating 2s infinite;
+    animation-direction: alternate-reverse;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+  }
+  @keyframes floating {
+    0% {
+      top: 0px;
+    }
+
+    100% {
+      top: 30px;
+    }
+  }
   .lyte-container {
     min-height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 3;
+    overflow: hidden;
     .lyte-app {
       display: flex;
       flex-direction: column;
@@ -119,12 +157,14 @@ export default {
         h1 {
           font-size: 4.5rem;
           margin: 40px 0;
-          filter: drop-shadow(5px 5px 0px #f68fff);
+          filter: drop-shadow(5px 5px 0px #00af91);
+          text-align: center;
         }
         h2 {
           font-size: 1.5rem;
           margin: 40px 0;
           font-weight: 100;
+          text-align: center;
         }
       }
       .lyte-input {
@@ -154,10 +194,19 @@ export default {
       }
     }
     footer {
-      height: 10vh;
+      height: 180px;
       width: 100%;
-      background: red;
-      align-self: flex-end;
+      color: #e7d9ea;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      img {
+        margin: 10px;
+      }
+      p {
+        text-align: center;
+      }
     }
   }
 }
