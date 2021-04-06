@@ -37,17 +37,18 @@
         <p>copyright © 2021 kacper rozdolski. all rights reserved.</p>
       </footer>
     </section>
-    <!-- <div class="lyte-sidebar">
-      <img src="@/assets/lyte.svg" alt="" />
-    </div> -->
+    <section class="playground">
+      <LinkTable />
+    </section>
   </div>
 </template>
 
 <script>
+import LinkTable from "./LinkTable.vue";
 import LyteLink from "./LyteLink.vue";
 export default {
   name: "HelloWorld",
-  components: { LyteLink },
+  components: { LyteLink, LinkTable },
   data() {
     return {
       url: "",
@@ -97,12 +98,16 @@ export default {
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;800&display=swap");
 
+.playground {
+  width: 100%;
+  height: 100vh;
+}
 .lyte-body {
   min-height: 100vh;
   width: 100%;
   background: black;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   .lyte-container {
     height: 100vh;
     width: 100vw;
