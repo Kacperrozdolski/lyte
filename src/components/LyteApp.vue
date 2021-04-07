@@ -6,7 +6,8 @@
         <div class="lyte-description">
           <h1>Lyte links, big results</h1>
           <h2>
-            A URL shortener built meant to help you grow and protect your brand.
+            A URL shortener built meant to help you grow and strengthen your
+            links.
           </h2>
         </div>
         <div class="lyte-input">
