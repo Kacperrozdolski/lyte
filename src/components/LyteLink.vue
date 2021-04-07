@@ -2,16 +2,20 @@
   <div class="lyte-Link">
     <p>{{ link }}</p>
     <div class="lyte-link-menu">
-      <img
-        src="@/assets/delete.svg"
-        alt="copy shorten link."
-        @click="deleteLink($event)"
-      />
-      <img
-        src="@/assets/copy.svg"
-        alt="copy shorten link."
-        @click="copyLink($event)"
-      />
+      <div class="delete">
+        <img
+          src="@/assets/delete.svg"
+          alt="copy shorten link."
+          @click="deleteLink($event)"
+        />
+      </div>
+      <div class="copy">
+        <img
+          src="@/assets/copy.svg"
+          alt="copy shorten link."
+          @click="copyLink($event)"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -45,8 +49,21 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    img {
-      cursor: pointer;
+    .delete {
+      display: flex;
+      align-items: center;
+      position: relative;
+      img {
+        cursor: pointer;
+      }
+    }
+    .copy {
+      display: flex;
+      align-items: center;
+      position: relative;
+      img {
+        cursor: pointer;
+      }
     }
   }
 }
